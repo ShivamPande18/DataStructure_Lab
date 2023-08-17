@@ -21,7 +21,7 @@ int main()
     printf("Enter the search term: ");
     scanf("%d",&src);
 
-    for(int i=0;i<5;i++)
+    for(int i=0;i<n;i++)
     {
         if(src == arr[i])
         {
