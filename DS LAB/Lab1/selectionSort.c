@@ -31,11 +31,7 @@ int main()
         arr[i] = arr[minInd];
         arr[minInd] = temp;
 
-        for(int i=0;i<n;i++)
-    {
-        printf("%d ",arr[i]);
-    }
-    printf("\n");
+        printf("\n");
     }
 
     printf("The sorted array is\n");
