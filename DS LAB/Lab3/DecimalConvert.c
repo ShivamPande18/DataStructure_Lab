@@ -12,6 +12,10 @@ void AddToStack(int n)
     {
         stack[top] = n;
     }
+    else
+    {
+        printf("Stack Out Of Bound");
+    }
 }
 
 int main()
