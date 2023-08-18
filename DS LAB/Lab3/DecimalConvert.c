@@ -31,14 +31,15 @@ int main()
     }
 
 
-
-//    AddToStackRev(1234);
-
     int res=0;
 
     while(top>=0)
     {
-        printf("%d ", stack[top]);
+        int pop = stack[top];
+
+        if(pop>=10)
+            printf("%c",pop+55);
+        else printf("%d", pop);
         top--;
     }
 
