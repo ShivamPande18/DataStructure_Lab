@@ -133,7 +133,6 @@ int main()
             scanf("%s", s1);
             printf("Enter a string 2");
             scanf("%s", s2);
-            strConcat(s1, s2);
             printf("Comparing string = %d", strCmp(s1,s2));
             break;
 
