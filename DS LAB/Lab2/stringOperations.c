@@ -60,7 +60,7 @@ int findSubstr(char s[100], char sub[100])
     int cnt = 0;
     int ind = -1;
 
-    while (s[i] != '0')
+    while (s[i] != '\0')
     {
         if (s[i] == sub[0])
         {
