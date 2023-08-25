@@ -1,6 +1,4 @@
 #include <stdio.h>
-#define ROWS 100
-#define COLS 100
 
 int main()
 {
@@ -9,7 +7,7 @@ int main()
     printf("Enter the number of rows and columns for matrices A and B:\n");
     scanf("%d %d", &rows, &cols);
 
-    int matA[ROWS][COLS], matB[ROWS][COLS], matC[ROWS][COLS];
+    int matA[100][100], matB[100][100], matC[100][100];
 
     printf("Enter the elements of the matrix A:\n");
     for (int i = 0; i < rows; i++)
