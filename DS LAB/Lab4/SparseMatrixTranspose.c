@@ -1,3 +1,5 @@
+//Values are taken by default. Need to add user inputs. Rest all is done
+
 #include<stdio.h>
 #define ROW 4
 #define COL 5
