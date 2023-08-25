@@ -1,3 +1,5 @@
+//Only sparse matrix is implemented not transopse
+
 #include<stdio.h>
 #define ROW 4
 #define COL 5
