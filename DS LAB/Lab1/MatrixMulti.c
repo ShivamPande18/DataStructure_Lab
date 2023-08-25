@@ -49,11 +49,14 @@ int main()
         }
     }
 
-    for (int m = 0; m < i; m++)
+    printf("%d",matC[0][0]);
+
+    for(int x=0; x< i ; x++)
     {
-        for (int m2 = 0; m2 < l; m2++)
+
+        for(int y=0; y<l; y++)
         {
-            printf(matC[m][m2] + " ");
+            printf("%d ",matC[x][y]);
         }
         printf("\n");
     }
