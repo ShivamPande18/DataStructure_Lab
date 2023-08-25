@@ -2,7 +2,7 @@
 #define SIZE 100
 #define TOP_LEN 4
 
-char stack[SIZE];
+char stack[SIZE * TOP_LEN];
 
 int top[TOP_LEN];
 
