@@ -1,4 +1,4 @@
-//Only sparse matrix is implemented not transopse
+//Only sparse matrix is implemented not transpose
 
 #include<stdio.h>
 #define ROW 4
