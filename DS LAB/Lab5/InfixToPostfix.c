@@ -1,4 +1,4 @@
-#Not complete yet
+//Not complete yet
 
 #include<stdio.h>
 #define SIZE 100
