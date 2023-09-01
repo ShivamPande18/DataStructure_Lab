@@ -1,5 +1,3 @@
-//Not complete yet
-
 #include<stdio.h>
 #define SIZE 100
 
@@ -66,7 +64,7 @@ void infix2Postfix()
         if(temp == operand)
         {
             postfix[j++] = infix[i];
-            i++;
+
         }
         else if(temp == rpara)
         {
@@ -83,8 +81,8 @@ void infix2Postfix()
                 postfix[j++] = pop();
             }
             push(infix[i]);
-            i++;
         }
+        i++;
     }
 
     while(stack[top]!='#')
