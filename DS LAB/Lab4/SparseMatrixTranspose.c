@@ -1,96 +1,103 @@
-//Values are taken by default. Need to add user inputs. Rest all is done
-
 #include<stdio.h>
-#define ROW 4
-#define COL 5
 
+int row;
+int col;
+int sparseLen=0;
 
-int sparse[ROW][COL] = {
-{0, 0, 7, 0, 3},
-{0, 9, 0, 7, 0},
-{6, 0, 0, 0, 0},
-{0, 4, 0, 0, 0}
-};
+typedef struct
+{
+    int row;
+    int col;
+    int val;
+} sparseSt;
+
+void transpose(int len, sparseSt a[len+1], sparseSt b[len+1])
+{
+    b[0].row = a[0].col;
+    b[0].col = a[0].row;
+    b[0].val = a[0].val;
+
+    int ind = 1;
+    int start = 0;
+
+    while(ind<=len)
+    {
+        for(int i=1;i<=len;i++)
+        {
+            if(a[i].col == start)
+            {
+                b[ind].row = a[i].col;
+                b[ind].col = a[i].row;
+                b[ind].val = a[i].val;
+                ind++;
+            }
+        }
+        start++;
+    }
+}
+
+void disp(int len, sparseSt a[len+1])
+{
+    for(int i=0;i<=len;i++)
+    {
+        printf("%d %d %d\n",a[i].row, a[i].col, a[i].val);
+    }
+}
 
 int main()
 {
-    int sparseSize = 0;
-    int arr[100][3] = {};
+    printf("Enter row:\n");
+    scanf("%d",&row);
+    printf("Enter col:\n");
+    scanf("%d",&col);
 
-    for(int i=0; i<ROW; i++)
+    printf("Enter values:\n");
+
+    int sparseMat[row][col];
+
+    for(int i=0;i<row;i++)
     {
-        for(int j=0; j<COL; j++)
+        for(int j=0;j<col;j++)
         {
-            if(sparse[i][j] != 0)
-            {
-//                printf("%d %d %d \n",i,j,sparse[i][j]);
-                arr[sparseSize][0] = i;
-                arr[sparseSize][1] = j;
-                arr[sparseSize][2] = sparse[i][j];
-                sparseSize++;
-            }
+            int temp;
+            scanf("%d",&temp);
+            sparseMat[i][j] = temp;
+
+            if(temp!=0) sparseLen++;
         }
-
     }
 
-    for(int i=0; i< sparseSize; i++)
-    {
-        int temp = arr[i][0];
-        arr[i][0] = arr[i][1];
-        arr[i][1] = temp;
-    }
+    sparseSt a[sparseLen+1];
+    sparseSt b[sparseLen+1];
+    a[0].row = row;
+    a[0].col = col;
+    a[0].val = sparseLen;
 
-    for(int i=0; i<sparseSize-1; i++)
+    int ind=1;
+
+    for(int i=0;i<row;i++)
     {
-        for(int j=0; j<sparseSize-1; j++)
+        for(int j=0;j<col;j++)
         {
-            int low = arr[j][0]*10 + arr[j][1];
-            int high = arr[j+1][0]*10 + arr[j+1][1];
-
-
-            if(low>high)
+            int temp = sparseMat[i][j];
+            if(temp!=0)
             {
-                int x1 = arr[j][0];
-                int x2 = arr[j][1];
-                int x3 = arr[j][2];
-
-                int y1 = arr[j+1][0];
-                int y2 = arr[j+1][1];
-                int y3 = arr[j+1][2];
-
-                arr[j][0] = y1;
-                arr[j][1] = y2;
-                arr[j][2] = y3;
-
-                arr[j+1][0] = x1;
-                arr[j+1][1] = x2;
-                arr[j+1][2] = x3;
+                a[ind].row = i;
+                a[ind].col = j;
+                a[ind].val = temp;
+                ind++;
             }
         }
     }
 
+    transpose(sparseLen, a, b);
+    printf("Sparse Matrix struct:\n");
+    disp(sparseLen, a);
+    printf("Sparse Matrix Transpose:\n");
+    disp(sparseLen, b);
 
-
-
-    int spInd=0;
-
-    for(int i=0; i< ROW; i++)
-    {
-        for(int j=0; j<COL; j++)
-        {
-            if(i == arr[spInd][0] && j == arr[spInd][1])
-            {
-                printf("%d ",arr[spInd][2]);
-                spInd++;
-            }
-            else
-            {
-                printf("%d ",0);
-            }
-        }
-        printf("\n");
-    }
 
 
     return 0;
 }
+
