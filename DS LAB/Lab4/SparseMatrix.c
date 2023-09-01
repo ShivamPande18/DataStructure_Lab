@@ -1,80 +1,66 @@
-//Only sparse matrix is implemented not transpose
-
 #include<stdio.h>
-#define ROW 4
-#define COL 5
 
+int row;
+int col;
+int sparseLen=0;
 
-int sparse[ROW][COL] = {
-{0, 0, 7, 0, 3},
-{0, 9, 0, 7, 0},
-{6, 0, 0, 0, 0},
-{0, 4, 0, 0, 0}
-};
+typedef struct
+{
+    int row;
+    int col;
+    int val;
+} sparseSt;
 
 int main()
 {
-    int sparseSize = 0;
-    int arr[100][3] = {};
+    printf("Enter row:\n");
+    scanf("%d",&row);
+    printf("Enter col:\n");
+    scanf("%d",&col);
 
-    for(int i=0; i<ROW; i++)
+    printf("Enter values:\n");
+
+    int sparseMat[row][col];
+
+    for(int i=0;i<row;i++)
     {
-        for(int j=0; j<COL; j++)
+        for(int j=0;j<col;j++)
         {
-            if(sparse[i][j] != 0)
+            int temp;
+            scanf("%d",&temp);
+            sparseMat[i][j] = temp;
+
+            if(temp!=0) sparseLen++;
+        }
+    }
+
+    sparseSt a[sparseLen+1];
+    a[0].row = row;
+    a[0].col = col;
+    a[0].val = sparseLen;
+
+    int ind=1;
+
+    for(int i=0;i<row;i++)
+    {
+        for(int j=0;j<col;j++)
+        {
+            int temp = sparseMat[i][j];
+            if(temp!=0)
             {
-//                printf("%d %d %d \n",i,j,sparse[i][j]);
-                arr[sparseSize][0] = i;
-                arr[sparseSize][1] = j;
-                arr[sparseSize][2] = sparse[i][j];
-                sparseSize++;
+                a[ind].row = i;
+                a[ind].col = j;
+                a[ind].val = temp;
+                ind++;
             }
         }
-
     }
+    printf("Sparse Matrix struct:\n")
 
-//    for(int i=0; i< sparseSize; i++)
-//    {
-//        int temp = arr[i][0];
-//        arr[i][0] = arr[i][1];
-//        arr[i][1] = temp;
-////        if(i>0)
-////        {
-////            if(arr[i-1][0]>arr[i][0])
-////            {
-////
-////            }
-////        }
-//    }
-
-    for(int i=0; i<sparseSize; i++)
+    for(int i=0;i<=sparseLen;i++)
     {
-        for(int j=0; j<3; j++)
-        {
-            printf("%d ",arr[i][j]);
-
-        }
-        printf("\n");
+        printf("%d %d %d\n",a[i].row, a[i].col, a[i].val);
     }
-
-//    int spInd=0;
-//
-//    for(int i=0; i< ROW; i++)
-//    {
-//        for(int j=0; j<COL; j++)
-//        {
-//            if(i == arr[spInd][0] && j == arr[spInd][1])
-//            {
-//                printf("%d ",arr[spInd][2]);
-//                spInd++;
-//            }
-//            else
-//            {
-//                printf("%d ",0);
-//            }
-//        }
-//        printf("\n");
-//    }
 
 
     return 0;
