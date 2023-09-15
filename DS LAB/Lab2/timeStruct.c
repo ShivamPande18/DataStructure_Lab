@@ -93,6 +93,6 @@ void readTime(struct time *t)
 
 void displayTime(struct time t)
 {
-    printf("%02d:%02d:%02d\n", t.hour, t.min, t.sec);
+    printf("%d:%d:%d\n", t.hour, t.min, t.sec);
 }
 
