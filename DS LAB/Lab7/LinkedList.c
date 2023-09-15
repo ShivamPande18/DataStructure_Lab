@@ -101,27 +101,47 @@ void delAtEnd()
     free(cur);
 }
 
+void del(int val)
+{
+    node* cur;
+    node* prev;
+    for(cur=first, prev= first;cur!=NULL; prev = cur, cur = cur->next)
+    {
+        if(cur->data == val)
+        {
+            prev->next = cur->next;
+            free(cur);
+            return;
+        }
+    }
+}
 
+void delAlternate()
+{
+    node* cur = first;
+    node* prev = first;
 
+    int alt = -1;
 
+    while(cur!=NULL)
+    {
+        if(alt == 1)
+        {
+            prev->next = cur->next;
+            node* temp = cur;
+            cur = cur->next;
+            free(temp);
+            alt = -1;
+        }
+        else
+        {
+            alt = 1;
+            prev = cur;
+            cur = cur->next;
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+}
 
 
 int main()
@@ -134,15 +154,9 @@ int main()
     display();
     insertAtEnd(40);
     display();
-    insertAtEnd(50);
-    display();
     insertAtStart(0);
     display();
-    insertAtPos(0,123);
-    display();
-    delAtStart();
-    display();
-    delAtEnd();
+    delAlternate();
     display();
     return 0;
 }
