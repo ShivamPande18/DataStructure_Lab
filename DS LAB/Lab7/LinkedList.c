@@ -51,7 +51,6 @@ void insertAtPos(int ind, int val)
 {
     int cnt=1;
     node* cur = first;
-    node* prev = first;
     node* temp = (node*) malloc(sizeof(node));
     temp->data = val;
     temp->next = NULL;
@@ -79,6 +78,52 @@ void insertAtPos(int ind, int val)
     }
 }
 
+void delAtStart()
+{
+
+    if(first == NULL) return;
+
+    node* temp = first;
+    first = first->next;
+    free(temp);
+}
+
+void delAtEnd()
+{
+    if(first == NULL) return;
+
+    node* cur = first;
+    node* prev = first;
+
+    for(cur=first;cur->next!=NULL; prev = cur,cur = cur->next);
+
+    prev->next = NULL;
+    free(cur);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main()
 {
     insertAtEnd(10);
@@ -94,6 +139,10 @@ int main()
     insertAtStart(0);
     display();
     insertAtPos(0,123);
+    display();
+    delAtStart();
+    display();
+    delAtEnd();
     display();
     return 0;
 }
