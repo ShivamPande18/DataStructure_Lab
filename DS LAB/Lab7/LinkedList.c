@@ -139,10 +139,24 @@ void delAlternate()
             prev = cur;
             cur = cur->next;
         }
-
     }
 }
 
+void reverseList()
+{
+    if(first==NULL) return;
+    node* temp = (node*)malloc(sizeof(node));
+    node* cur = first->next;
+    first->next = NULL;
+
+    while(cur!=NULL)
+    {
+        temp = cur;
+        cur = cur->next;
+        temp->next = first;
+        first = temp;
+    }
+}
 
 int main()
 {
@@ -157,6 +171,8 @@ int main()
     insertAtStart(0);
     display();
     delAlternate();
+    display();
+    reverseList();
     display();
     return 0;
 }
