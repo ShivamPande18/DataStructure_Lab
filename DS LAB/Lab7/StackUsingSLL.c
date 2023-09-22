@@ -14,7 +14,11 @@ node* first = NULL;
 int pop()
 {
     int data = -99999;
-    if(first == NULL) return;
+    if(first == NULL)
+    {
+        printf("Stack Empty");
+        return data;
+    }
 
     node* cur = first;
     node* prev = first;
