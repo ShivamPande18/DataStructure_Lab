@@ -54,6 +54,7 @@ void insertBefore(int src, int val)
     if(first->data == src)
     {
         temp->llink = NULL;
+        first->llink = temp;
         temp->rlink = first;
         first = temp;
         return;
@@ -64,8 +65,8 @@ void insertBefore(int src, int val)
     if(cur->rlink!=NULL || src == cur->data)
     {
         cur->llink->rlink = temp;
-        temp->rlink = cur;
         temp->llink = cur->llink;
+        temp->rlink = cur;
 
     }
 }
@@ -123,6 +124,51 @@ void insertAtPos(int ind, int val)
     }
 }
 
+void delAtPos(int ind)
+{
+    int cnt=0;
+    node* cur = first;
+
+    if(first==NULL) return;
+
+    if(ind == 0)
+    {
+        node* temp = first;
+        if(first->rlink!=NULL)first->rlink->llink = NULL;
+        first = first->rlink;
+        free(temp);
+        return;
+
+    }
+
+    for(cur=first;cnt!=ind && cur!=NULL;cnt++,cur=cur->rlink);
+    if(cur!=NULL)
+    {
+        cur->llink->rlink = cur->rlink;
+        cur->rlink->llink = cur->llink;
+        free(cur);
+    }
+
+}
+
+void reverseList()
+{
+    if(first==NULL) return;
+    node* temp = (node*)malloc(sizeof(node));
+    node* cur = first->rlink;
+    first->rlink = NULL;
+    first->llink = cur;
+
+    while(cur!=NULL)
+    {
+        temp = cur;
+        cur = cur->rlink;
+        temp->rlink = first;
+        temp->llink = cur;
+        first = temp;
+    }
+}
+
 void display()
 {
     if(first == NULL) printf("Empty List:");
@@ -137,7 +183,10 @@ int main()
     insertAtEnd(10);
     insertAtEnd(20);
     insertBefore(10,30);
-    insertAtPos(3,100);
+    display();
+    delAtPos(1);
+    display();
+    reverseList();
     display();
     return 0;
 }
