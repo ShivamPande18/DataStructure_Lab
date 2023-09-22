@@ -1,5 +1,3 @@
-//incomplete code
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -158,21 +156,73 @@ void reverseList()
     }
 }
 
+void sort()
+{
+    node* i;
+    node* j;
+
+
+    for(i=first;i->next!=NULL;i=i->next)
+    {
+        for(j=first;j->next!=NULL;j=j->next)
+        {
+            if(j->data > j->next->data)
+            {
+                node* temp = j->next->data;
+                j->next->data = j->data;
+                j->data = temp;
+            }
+        }
+    }
+}
+
+void insertBefore(int src, int val)
+{
+    node* cur = first;
+    node* prev = first;
+    node* temp = (node*) malloc(sizeof(node));
+    temp->data = val;
+
+    if(first == NULL) return;
+
+    for(;cur->next != NULL && cur->data != src; prev = cur, cur = cur->next);
+
+    if(cur->next!=NULL || src == cur->data)
+    {
+        prev->next = temp;
+        temp->next = cur;
+
+    }
+}
+
+void insertAfter(int src, int val)
+{
+    node* cur = first;
+    node* temp = (node*) malloc(sizeof(node));
+    temp->data = val;
+
+    if(first == NULL) return;
+
+    for(;cur->next != NULL && cur->data != src; cur = cur->next);
+
+    if(cur->next!=NULL || src == cur)
+    {
+        node* curNext;
+        curNext = cur->next;
+        cur->next = temp;
+        temp->next = curNext;
+
+    }
+}
+
 int main()
 {
     insertAtEnd(10);
-    display();
+    insertAtEnd(50);
+    insertAtEnd(30);
     insertAtEnd(20);
     display();
-    insertAtEnd(30);
-    display();
-    insertAtEnd(40);
-    display();
-    insertAtStart(0);
-    display();
-    delAlternate();
-    display();
-    reverseList();
+    sort();
     display();
     return 0;
 }
