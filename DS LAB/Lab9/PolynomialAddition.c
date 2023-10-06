@@ -1,3 +1,5 @@
+//not complete
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -10,6 +12,7 @@ typedef struct node
 
 node* p1 = NULL;
 node* p2 = NULL;
+node* res = NULL;
 
 void display(node* first)
 {
@@ -69,7 +72,17 @@ int main()
     p2 = insert(p2, 1, 7);
     p2 = insert(p2, 0, 6);
 
-    display(p1);
-    display(p2);
+    while(p1!=NULL && p2!=NULL)
+    {
+        int a,b;
+        node* temp = (node*) malloc(sizeof(node));
+
+
+        if(p1->exp == p2->exp)
+        {
+            temp->exp = p1->exp;
+            temp->data = p1->data + p2->data;
+        }
+    }
     return 0;
 }
