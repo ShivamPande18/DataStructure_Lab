@@ -57,7 +57,7 @@ int main()
 
 
     node* cur;
-    for(cur=x1;cur!=NULL;cur=cur->rlink);
+    for(cur=x1;cur->rlink!=NULL;cur=cur->rlink);
     cur->rlink = x2;
     x2->llink = cur;
     display(x1);
