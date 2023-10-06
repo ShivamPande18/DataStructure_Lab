@@ -31,6 +31,7 @@ void insertAtEnd(int val)
     temp->llink = last;
     temp->rlink = first;
     last = last->rlink;
+    first->llink = last;
 }
 
 void delAtEnd()
