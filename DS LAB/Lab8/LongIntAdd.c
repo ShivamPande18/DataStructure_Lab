@@ -109,7 +109,7 @@ int main()
 
         sum = x+y+carry;
 
-        if(sum>10)
+        if(sum>=10)
         {
             carry = sum/10;
             sum  = sum%10;
