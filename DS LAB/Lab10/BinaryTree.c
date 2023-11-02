@@ -165,14 +165,38 @@ int treeDepth(tree* cur)
     else return rdepth+1;
 }
 
+int noOfLeafNodes()
+{
+    tree* cur = root;
+    tree* stack[20];
+    int top = -1;
+    int count = 0;
+
+    while(1==1)
+    {
+        while(cur!=NULL)
+        {
+            stack[++top] = cur;
+            cur = cur->lchild;
+        }
+        if(top>-1) cur = stack[top--];
+        else break;
+
+        count++;
+        cur = cur->rchild;
+    }
+    return count;
+}
+
 int main()
 {
     createTree();
 //    inOrder();
 //    postOrder();
 //    preOrder();
-
-    printf("%d",treeDepth(root));
+//    findParent(3,root);
+//    printf("%d",treeDepth(root));
 //    printf("%d",res);
+//      printf("%d",noOfLeafNodes());
     return 0;
 }
