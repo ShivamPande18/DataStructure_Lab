@@ -74,7 +74,7 @@ void inOrder()
         if(top>-1) cur = stack[top--];
         else break;
 
-        printf("%d",cur->rchild);
+        printf("%d",cur->data);
         cur = cur->rchild;
     }
 }
@@ -133,11 +133,17 @@ void preOrder()
     }
 }
 
+tree* findParent(tree* cur)
+{
+    
+}
+
 int main()
 {
     createTree();
 //    inOrder();
 //    postOrder();
-    preOrder();
+//    preOrder();
+
     return 0;
 }
