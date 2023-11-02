@@ -1,6 +1,3 @@
-//not complete
-
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -143,12 +140,12 @@ void findParent(int src, tree* cur)
     if(cur->lchild  && cur->lchild->data == src)
     {
         printf("%d",cur->data);
-        return ;
+        return;
     }
     if(cur->rchild  && cur->rchild->data == src)
     {
         printf("%d",cur->data);
-        return ;
+        return;
     }
 
     findParent(src,cur->lchild);
@@ -188,6 +185,22 @@ int noOfLeafNodes()
     return count;
 }
 
+int printAncestors(tree *root, int target)
+{
+  if (root == NULL)
+     return 0;
+
+  if (root->data == target)
+     return 1;
+
+  if ( printAncestors(root->lchild, target) || printAncestors(root->rchild, target) )
+  {
+    printf("%d",root->data);
+    return 1;
+  }
+  return 0;
+}
+
 int main()
 {
     createTree();
@@ -197,6 +210,7 @@ int main()
 //    findParent(3,root);
 //    printf("%d",treeDepth(root));
 //    printf("%d",res);
-//      printf("%d",noOfLeafNodes());
+//    printf("%d",noOfLeafNodes());
+    printAncestors(root,7);
     return 0;
 }
