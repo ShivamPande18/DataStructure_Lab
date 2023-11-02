@@ -18,7 +18,7 @@ tree* root;
 void createTree()
 {
     int i=0;
-    while(i<5)
+    while(i<3)
     {
         char dir[10];
         printf("enter dir\n");
@@ -74,7 +74,7 @@ void inOrder()
         if(top>-1) cur = stack[top--];
         else break;
 
-        printf("%d",cur->data);
+        printf("%d",cur->rchild);
         cur = cur->rchild;
     }
 }
@@ -87,23 +87,57 @@ void postOrder()
 
     while(1==1)
     {
-        while(cur!=NULL)
+        while(cur)
         {
+            if(cur->rchild)
+            {
+                stack[++top] = cur->rchild;
+            }
             stack[++top] = cur;
             cur = cur->lchild;
         }
-        if(top>-1) cur = stack[top--];
-        else break;
+        cur = stack[top--];
 
-        printf("%d",cur->data);
-        cur = cur->rchild;
+        if (cur->rchild && stack[top] == cur->rchild)
+        {
+            stack[top--];
+            stack[++top] = cur;
+            cur = cur->rchild;
+        }
+        else // Else print root's data and set root as NULL
+        {
+            printf("%d ", cur->data);
+            cur = NULL;
+        }
+
+        if(top<=-1) break;
+    }
+}
+
+void preOrder()
+{
+    tree* cur = root;
+    tree* stack[20];
+    int top = -1;
+
+    stack[++top] = cur;
+
+    while(top>-1)
+    {
+        tree* node = stack[top];
+        printf("%d",node->data);
+        stack[top--];
+
+        if(node->rchild) stack[++top] = node->rchild;
+        if(node->lchild) stack[++top] = node->lchild;
     }
 }
 
 int main()
 {
     createTree();
-    inOrder();
-    postOrder();
+//    inOrder();
+//    postOrder();
+    preOrder();
     return 0;
 }
