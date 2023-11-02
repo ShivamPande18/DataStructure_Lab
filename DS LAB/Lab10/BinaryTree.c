@@ -155,6 +155,16 @@ void findParent(int src, tree* cur)
     findParent(src,cur->rchild);
 }
 
+int treeDepth(tree* cur)
+{
+    if(!cur) return 0;
+    int ldepth = treeDepth(cur->lchild);
+    int rdepth = treeDepth(cur->rchild);
+
+    if(ldepth>rdepth) return ldepth+1;
+    else return rdepth+1;
+}
+
 int main()
 {
     createTree();
@@ -162,7 +172,7 @@ int main()
 //    postOrder();
 //    preOrder();
 
-    findParent(3,root);
+    printf("%d",treeDepth(root));
 //    printf("%d",res);
     return 0;
 }
