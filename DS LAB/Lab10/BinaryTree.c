@@ -18,7 +18,11 @@ tree* root;
 void createTree()
 {
     int i=0;
-    while(i<3)
+    printf("Enter number of nodes\n");
+    int n;
+    scanf("%d",&n);
+
+    while(i<n)
     {
         char dir[10];
         printf("enter dir\n");
@@ -133,9 +137,22 @@ void preOrder()
     }
 }
 
-tree* findParent(tree* cur)
+void findParent(int src, tree* cur)
 {
-    
+    if(cur == NULL) return;
+    if(cur->lchild  && cur->lchild->data == src)
+    {
+        printf("%d",cur->data);
+        return ;
+    }
+    if(cur->rchild  && cur->rchild->data == src)
+    {
+        printf("%d",cur->data);
+        return ;
+    }
+
+    findParent(src,cur->lchild);
+    findParent(src,cur->rchild);
 }
 
 int main()
@@ -145,5 +162,7 @@ int main()
 //    postOrder();
 //    preOrder();
 
+    findParent(3,root);
+//    printf("%d",res);
     return 0;
 }
