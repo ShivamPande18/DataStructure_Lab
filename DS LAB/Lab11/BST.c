@@ -8,9 +8,9 @@ typedef struct tree
     struct tree *right;
 } tree;
 
-tree* root;
+tree *root;
 
-tree* create(int val)
+tree *create(int val)
 {
     tree *temp = (tree *)malloc(sizeof(tree));
     temp->val = val;
@@ -32,7 +32,7 @@ tree *insert(tree *cur, int val)
     return cur;
 }
 
-tree *deleteNode(tree* root, int key)
+tree *deleteNode(tree *root, int key)
 {
     if (root == NULL)
         return root;
@@ -83,12 +83,12 @@ tree *deleteNode(tree* root, int key)
     }
 }
 
-void inorder(tree* cur)
+void inorder(tree *cur)
 {
-    if(cur!=NULL)
+    if (cur != NULL)
     {
         inorder(cur->left);
-        printf("%d ",cur->val);
+        printf("%d ", cur->val);
         inorder(cur->right);
     }
 }
@@ -102,6 +102,51 @@ tree *search(tree *root, int key)
         return search(root->right, key);
 
     return search(root->left, key);
+}
+
+int treeDepth(tree *cur)
+{
+    if (!cur) return 0;
+    int ldepth = treeDepth(cur->left);
+    int rdepth = treeDepth(cur->right);
+
+    if (ldepth > rdepth)
+        return ldepth + 1;
+    else
+        return rdepth + 1;
+}
+
+void level(tree *root, int level_no)
+{
+    if (!root)
+        return;
+    if (level_no == 0)
+    {
+        printf("%d -> ", root->val);
+    }
+    else
+    {
+        level(root->left, level_no - 1);
+        level(root->right, level_no - 1);
+    }
+}
+
+void printLevel(tree *root)
+{
+    if (!root)
+        return;
+    int height = treeDepth(root);
+    for (int i = 0; i < height; i++)
+    {
+        printf("Level %d: ", i);
+        level(root, i);
+        printf("\n");
+    }
+    for (int i = 0; i < height; i++)
+    {
+        level(root, i);
+    }
+    printf("\n");
 }
 
 int main()
