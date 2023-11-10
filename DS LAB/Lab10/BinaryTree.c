@@ -11,6 +11,16 @@ typedef struct tree
 
 tree* root;
 
+void inorder(tree* cur)
+{
+    if(cur!=NULL)
+    {
+        inorder(cur->lchild);
+        printf("%d ",cur->data);
+        inorder(cur->rchild);
+    }
+}
+
 
 void createTree()
 {
