@@ -82,8 +82,8 @@ int main()
     t2 = createTree(t2);
 
     if (areMirrors(t1, t2))
-        printf("The trees are mirrors.\n");
+        printf("Mirror");
     else
-        printf("The trees are not mirrors.\n");
+        printf("Not Mirror");
     return 0;
 }
