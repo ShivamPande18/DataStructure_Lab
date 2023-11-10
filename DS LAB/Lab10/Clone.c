@@ -66,7 +66,10 @@ tree *cloneBinaryTree(tree *root)
 {
     if (root == NULL)
         return NULL;
-    tree *temp = getNewNode(root->data);
+    tree* newNode = (tree*)malloc(sizeof(tree));
+    newNode->data = root->data;
+    newNode->rchild = newNode->lchild = NULL;
+    tree *temp = newNode;
     temp->lchild = cloneBinaryTree(root->lchild);
     temp->rchild = cloneBinaryTree(root->rchild);
     return temp;
