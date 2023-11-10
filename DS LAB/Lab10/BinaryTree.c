@@ -55,10 +55,15 @@ void createTree()
             int j=0;
             while(dir[j]!='\0')
             {
-//                printf("NULL");
+                
                 prev = cur;
                 if(dir[j] == 'l') cur = cur->lchild;
                 else cur = cur->rchild;
+                if(cur==NULL) 
+                {
+                    printf("Invalid input\n");
+                    exit(0);
+                }
                 j++;
             }
             if(dir[j-1] == 'l') prev->lchild = temp;
